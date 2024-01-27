@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import detectEthereumProvider from '@metamask/detect-provider';
+import Web3 from 'web3';
+import "./App.css";
 
 function App() {
 
@@ -53,9 +56,35 @@ function App() {
   console.log('web3Api', web3Api);
 
   return (
-    <div>
-      Faucet web app
-    </div>
+    <>
+      <div className="faucet-wrapper">
+        <div className="faucet">
+        <div className="is-flex is-align-items-center">
+            <span>
+              <strong className="mr-2">Account: </strong>
+            </span>
+              {account ?
+                <div>{account}</div> :
+                <button
+                  className="button is-small"
+                  onClick={() => web3Api.provider.request({method: "eth_requestAccounts"})}
+                >
+                  Connect Wallet
+                </button>
+              }
+          </div>
+          <div className="balance-view is-size-2 my-4">
+            Current Balance: <strong>10</strong> ETH
+          </div>
+          <button className="button mr-2" onClick={async () => {
+            const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
+            console.log('accounts', accounts);
+          }}>Enable Ethereum</button>
+          <button className="button is-link mr-2">Donate</button>
+          <button className="button is-primary">Withdraw</button>
+        </div>
+      </div>
+    </>
   );
 }
 

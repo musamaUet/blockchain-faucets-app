@@ -18,7 +18,7 @@ function App() {
       //  this api allows websites to request users, accounts, read data to blockchain,
       // sign messages and transactions
 
-      const provider = detectEthereumProvider();
+      const provider = await detectEthereumProvider();
       if(provider) {
         // provider.request({method:"eth_requestAccounts"});
         setWeb3Api({web3: new Web3(provider), provider});

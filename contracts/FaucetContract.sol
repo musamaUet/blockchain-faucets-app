@@ -74,6 +74,7 @@ contract Faucet is Owned, Logger, IFaucet {
 // 8 Bytes => 64 Bits
 
 
+// truffle console
 // const instance = await Faucet.deployed();
 // instance.addFunds({from: accounts[0], value:"200000000"});
 // instance.getFunderAtIndex(0);
